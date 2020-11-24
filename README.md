@@ -4,7 +4,7 @@
 This implementation is based on [FCOS](https://github.com/tianzhi0549/FCOS), [gym](https://github.com/openai/gym) and [keras-rl](https://github.com/keras-rl/keras-rl). This active object detection framework chooses FCOS as object detection module, and chooses Double DQN as camera control module.
 
 ## Dataset
-Datasets can be downloaded from here. [SA](https://www.dropbox.com/s/jwusmkq90t0cq5f/SA.zip?dl=0)
+Download address of two datasets : [SA](https://www.dropbox.com/s/jwusmkq90t0cq5f/SA.zip?dl=0) and [VP]().
 
 ## Training
 
