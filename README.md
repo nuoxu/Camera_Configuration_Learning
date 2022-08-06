@@ -1,7 +1,10 @@
-# Camera Parameters Learning for Active Object Detection
+# Dynamic Camera Configuration Learning for High-Confidence Active Object Detection
 
 ## Installation
 This implementation is based on [FCOS](https://github.com/tianzhi0549/FCOS), [gym](https://github.com/openai/gym) and [keras-rl](https://github.com/keras-rl/keras-rl). This active object detection framework chooses FCOS as object detection module, and chooses Double DQN as camera control module.
+
+## Dataset
+Download address of two datasets : [SA](https://www.dropbox.com/s/jwusmkq90t0cq5f/SA.zip?dl=0) and [VP](https://www.dropbox.com/s/4jmdbpy0lbnyddn/VP.zip?dl=0).
 
 ## Training
 
