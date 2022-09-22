@@ -135,7 +135,7 @@ class DQNAgent(AbstractDQNAgent):
         super(DQNAgent, self).__init__(*args, **kwargs)
 
         # Validate (important) input.
-        if hasattr(model.output, '__len__') and len(model.output) > 1:
+        if hasattr(model.output, '__shape__') and len(model.output.shape) > 2:
             raise ValueError('Model "{}" has more than one output. DQN expects a model that has a single output.'.format(model))
         if model.output._keras_shape != (None, self.nb_actions):
             raise ValueError('Model output "{}" has invalid shape. DQN expects a model that has one dimension for each action, in this case {}.'.format(model.output, self.nb_actions))
@@ -274,6 +274,29 @@ class DQNAgent(AbstractDQNAgent):
         self.recent_action = action
 
         return action
+    
+    def forward_with_q_values(self, observation):
+        # Select an action.
+        state = self.memory.get_recent_state(observation)
+        q_values = self.compute_q_values(state)
+        
+        non_action = self.env._get_non_action_vector()
+        q_values = q_values + non_action
+
+        if self.training :
+            action = self.policy.select_action(q_values=q_values)
+        else:
+            action = self.test_policy.select_action(q_values=q_values)
+
+        # print(self.env.current_image_name)
+        # print(q_values)
+        # print(action)
+
+        # Book-keeping.
+        self.recent_observation = observation
+        self.recent_action = action
+
+        return action, q_values
 
     def backward(self, reward, terminal):
         # Store most recent experience in memory.
